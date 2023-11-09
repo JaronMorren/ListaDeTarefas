@@ -1,7 +1,7 @@
 import React from 'react';
 import { TaskListProps } from '../interfaces/interface';
 import { ListContainer, TaskItem, CompleteButton } from '../styles/TaskListStyles';
-import { format } from 'date-fns';
+import { format, utcToZonedTime } from 'date-fns-tz';
 
 const TaskList: React.FC<TaskListProps> = ({ tasks, completeTask }) => {
   // Create a sorted copy of tasks
@@ -17,7 +17,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, completeTask }) => {
       <ul>
         {sortedTasks.map((task) => (
           <TaskItem key={task.id} className={task.completed ? 'completed' : ''}>
-            <strong>{task.name}</strong> - {`${format(task.date, 'MMMM d, yyyy')}, ${task.time}`}
+            <strong>{task.name}</strong> - {`${format(utcToZonedTime(task.date, 'UTC'), 'MMMM dd, yyyy')}, ${task.time}`}
             <CompleteButton onClick={() => handleCompleteTask(task.id)}>Complete</CompleteButton>
           </TaskItem>
         ))}
