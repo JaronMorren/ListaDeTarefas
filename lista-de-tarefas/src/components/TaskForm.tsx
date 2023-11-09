@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Task from '../interfaces/interface';
+import { Button, FormContainer, Input, Label } from '../styles/TaskFormStyles';
 
 interface TaskFormProps {
   onTaskAdd: (task: Task) => void;
@@ -38,25 +39,25 @@ const TaskForm: React.FC<TaskFormProps> = ({ onTaskAdd }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <FormContainer onSubmit={handleSubmit}>
       <h2>Add Task</h2>
-      <label>
+      <Label>
         Task Name:
-        <input type="text" value={taskName} onChange={(e) => setTaskName(e.target.value)} />
-      </label>
+        <Input type="text" value={taskName} onChange={(e) => setTaskName(e.target.value)} />
+      </Label>
       <br />
-      <label>
+      <Label>
         Date:
-        <input type="date" value={taskDate} onChange={(e) => setTaskDate(e.target.value)} />
-      </label>
+        <Input type="date" value={taskDate} onChange={(e) => setTaskDate(e.target.value)} />
+      </Label>
       <br />
-      <label>
+      <Label>
         Time:
-        <input type="time" value={taskTime} onChange={(e) => setTaskTime(e.target.value)} />
-      </label>
+        <Input type="time" value={taskTime} onChange={(e) => setTaskTime(e.target.value)} />
+      </Label>
       <br />
-      <button type="submit">Add Task</button>
-    </form>
+      <Button type="submit">Add Task</Button>
+    </FormContainer>
   );
 };
 

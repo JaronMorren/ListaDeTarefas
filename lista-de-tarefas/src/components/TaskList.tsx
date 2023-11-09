@@ -1,5 +1,6 @@
 import React from 'react';
 import Task from '../interfaces/interface';
+import { CompleteButton, ListContainer, TaskItem } from '../styles/TaskListStyles';
 
 interface TaskListProps {
   tasks: Task[];
@@ -14,17 +15,17 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onTaskComplete }) => {
     onTaskComplete(taskId);
 };
   return (
-    <div>
+    <ListContainer>
       <h2>Task List</h2>
       <ul>
         {tasks.map((task) => (
-          <li key={task.id}>
+          <TaskItem key={task.id}>
             <strong>{task.name}</strong> - {task.date.toDateString()}, {task.time}
-            <button onClick={() => handleCompleteTask(task.id)}>Complete</button>
-          </li>
+            <CompleteButton onClick={() => handleCompleteTask(task.id)}>Complete</CompleteButton>
+          </TaskItem>
         ))}
       </ul>
-    </div>
+    </ListContainer>
   );
 };
 
