@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import Task from '../interfaces/interface';
 import { Button, FormContainer, Input, Label } from '../styles/TaskFormStyles';
+import { useTaskContext } from '../contexts/TaskContext';
+import { Task } from '../interfaces/interface';
 
-interface TaskFormProps {
-  onTaskAdd: (task: Task) => void;
-}
-
-const TaskForm: React.FC<TaskFormProps> = ({ onTaskAdd }) => {
+const TaskForm: React.FC = () => {
+  const { addTask } = useTaskContext();
   const [taskName, setTaskName] = useState('');
   const [taskDate, setTaskDate] = useState('');
   const [taskTime, setTaskTime] = useState('');
@@ -30,7 +28,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onTaskAdd }) => {
     };
 
     // Add the new task to the list
-    onTaskAdd(newTask);
+    addTask(newTask); // Fix: use addTask from context
 
     // Clear the form fields
     setTaskName('');

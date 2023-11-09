@@ -1,23 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
-import Task from './interfaces/interface';
 import TaskForm from './components/TaskForm';
 import TaskList from './components/TaskList';
+import { useTaskContext } from './contexts/TaskContext';
 
 const App: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-
-  
-  const handleTaskAdd = (newTask: Task) => {
-    setTasks([...tasks, newTask]);
-  };
-
-  const handleTaskComplete = (taskId: number) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, completed: true } : task
-    );
-    setTasks(updatedTasks.filter((task) => !task.completed));
-  };
+  const { tasks, completeTask } = useTaskContext();
 
   return (
     <Router>
@@ -34,8 +22,11 @@ const App: React.FC = () => {
         </nav>
 
         <Routes>
-          <Route path="/add-task" element={<TaskForm onTaskAdd={handleTaskAdd} />} />
-          <Route path="/" element={<TaskList tasks={tasks} onTaskComplete={handleTaskComplete} />} />
+          <Route path="/add-task" element={<TaskForm />} />
+          <Route
+            path="/"
+            element={<TaskList tasks={tasks} completeTask={completeTask} />}
+          />
         </Routes>
       </div>
     </Router>
@@ -43,4 +34,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 

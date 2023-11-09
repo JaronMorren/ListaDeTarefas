@@ -1,19 +1,14 @@
-import React from 'react';
-import Task from '../interfaces/interface';
-import { CompleteButton, ListContainer, TaskItem } from '../styles/TaskListStyles';
+import { TaskListProps } from "../interfaces/interface";
+import { ListContainer, TaskItem, CompleteButton } from "../styles/TaskListStyles";
 
-interface TaskListProps {
-  tasks: Task[];
-  onTaskComplete: (taskId: number) => void;
-}
-
-const TaskList: React.FC<TaskListProps> = ({ tasks, onTaskComplete }) => {
+const TaskList: React.FC<TaskListProps> = ({ tasks, completeTask }) => {
   // Sort tasks by date and time
   tasks.sort((a, b) => a.date.getTime() - b.date.getTime());
 
   const handleCompleteTask = (taskId: number) => {
-    onTaskComplete(taskId);
-};
+    completeTask(taskId);
+  };
+
   return (
     <ListContainer>
       <h2>Task List</h2>
@@ -30,3 +25,4 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onTaskComplete }) => {
 };
 
 export default TaskList;
+
