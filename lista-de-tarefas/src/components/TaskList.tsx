@@ -1,9 +1,11 @@
-import { TaskListProps } from "../interfaces/interface";
-import { ListContainer, TaskItem, CompleteButton } from "../styles/TaskListStyles";
+import React from 'react';
+import { TaskListProps } from '../interfaces/interface';
+import { ListContainer, TaskItem, CompleteButton } from '../styles/TaskListStyles';
+import { format } from 'date-fns';
 
 const TaskList: React.FC<TaskListProps> = ({ tasks, completeTask }) => {
-  // Sort tasks by date and time
-  tasks.sort((a, b) => a.date.getTime() - b.date.getTime());
+  // Create a sorted copy of tasks
+  const sortedTasks = [...tasks].sort((a, b) => a.date.getTime() - b.date.getTime());
 
   const handleCompleteTask = (taskId: number) => {
     completeTask(taskId);
@@ -13,9 +15,9 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, completeTask }) => {
     <ListContainer>
       <h2>Task List</h2>
       <ul>
-        {tasks.map((task) => (
-          <TaskItem key={task.id}>
-            <strong>{task.name}</strong> - {task.date.toDateString()}, {task.time}
+        {sortedTasks.map((task) => (
+          <TaskItem key={task.id} className={task.completed ? 'completed' : ''}>
+            <strong>{task.name}</strong> - {`${format(task.date, 'MMMM d, yyyy')}, ${task.time}`}
             <CompleteButton onClick={() => handleCompleteTask(task.id)}>Complete</CompleteButton>
           </TaskItem>
         ))}
@@ -25,4 +27,5 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, completeTask }) => {
 };
 
 export default TaskList;
+
 
