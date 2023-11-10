@@ -23,6 +23,8 @@ const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId ? { ...task, completed: true } : task
     );
+
+    console.log({ updatedTasks });
     setTasks(updatedTasks);
   };
 

@@ -1,20 +1,33 @@
 import styled from "styled-components";
+import colors from "./colors";
 
 export const ListContainer = styled.div`
-  max-width: 600px;
-  margin: auto;
+  background-color: ${colors.lightGrey};
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 `;
 
 export const TaskItem = styled.li`
   list-style: none;
   margin-bottom: 16px;
+  padding: 8px;
+  width: 100vh;
 `;
 
-export const CompleteButton = styled.button`
-  background-color: #28a745;
-  color: #fff;
-  padding: 6px 10px;
-  border: none;
-  cursor: pointer;
-  margin-left: 8px;
+export const SpanContainer = styled.span`
+  border-radius: 8px;
+  align-items: center;
+  padding: 20px;
+`;
+
+export const CompletedContainer = styled.div`
+  display: flex;
+  // background-color: darkGrey;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vh;
+  padding: 35px;
 `;
