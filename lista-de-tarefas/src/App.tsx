@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
-import TaskForm from './components/TaskForm';
-import TaskList from './components/TaskList';
-import { useTaskContext } from './contexts/TaskContext';
+import React from "react";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
+import { useTaskContext } from "./contexts/TaskContext";
 
 const App: React.FC = () => {
   const { tasks, completeTask } = useTaskContext();
@@ -22,11 +22,11 @@ const App: React.FC = () => {
         </nav>
 
         <Routes>
-          <Route path="/add-task" element={<TaskForm />} />
           <Route
             path="/"
             element={<TaskList tasks={tasks} completeTask={completeTask} />}
           />
+          <Route path="/add-task" element={<TaskForm />} />
         </Routes>
       </div>
     </Router>
@@ -34,5 +34,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
-
