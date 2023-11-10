@@ -1,4 +1,3 @@
-// TaskProvider.tsx
 import React, { useState, ReactNode, createContext } from "react";
 import { Task } from "../interfaces/interface";
 
@@ -24,7 +23,7 @@ const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
     const updatedTasks = tasks.map((task) =>
       task.id === taskId ? { ...task, completed: true } : task
     );
-    setTasks(updatedTasks.filter((task) => !task.completed));
+    setTasks(updatedTasks);
   };
 
   return (

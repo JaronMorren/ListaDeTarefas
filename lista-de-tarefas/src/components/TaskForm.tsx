@@ -28,7 +28,7 @@ const TaskForm: React.FC = () => {
     };
 
     // Add the new task to the list
-    addTask(newTask); // Fix: use addTask from context
+    addTask(newTask);
 
     // Clear the form fields
     setTaskName("");
